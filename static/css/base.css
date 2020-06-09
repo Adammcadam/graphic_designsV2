@@ -89,8 +89,8 @@ ul {
     .nav-links {
         position: absolute;
         right: 0px;
-        height: 92vh;
-        top: 8vh;
+        height: 85vh;
+        top: 15vh;
         background: #fafafa;
         display: flex;
         flex-direction: column;
