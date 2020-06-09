@@ -4,17 +4,17 @@
             <h4 class="header-text"><a href="{% url 'home' %}">Graphic Designs</a></h4>
         </div>
         <ul class="nav-links">
-            <li class="navs"><a href="#">Work</a></li>
-            <li class="navs"><a href="#">Contact</a></li>
             {% if user.is_authenticated %}
                 {%  if user.is_superuser %}
-                <li class="navs"><a href="#">Gallery</a></li>
+                    <li class="navs"><a href="#">Gallery</a></li>
                 {% endif %}
                 <li class="navs"><a href="#">Shop</a></li>
                 <li class="navs"><a href="#">Account</a></li>
                 <li class="navs"><a href="{% url 'account_logout' %}">Logout</a></li>
-                <li class="navs"><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>cart count</span> Cart</a></li>
+                <li class="navs"><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span><!-- TODO: cart count here --></span> Cart</a></li>
             {% else %}
+                <li class="navs"><a href="#">Work</a></li>
+                <li class="navs"><a href="#">Contact</a></li>
                 <li class="navs"><a href="{% url 'account_signup' %}">Register</a></li>
                 <li class="navs"><a href="{% url 'account_login' %}">Login</a></li>
             {% endif %}
