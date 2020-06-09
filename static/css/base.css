@@ -71,6 +71,10 @@ ul {
     color: #262829;
 }
 
+.overlay {
+    margin-top: 15vh;
+}
+
 /* tablets  */
 @media screen and (max-width: 1024px) {
     .nav-links {
