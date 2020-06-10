@@ -1,0 +1,15 @@
+html {
+    height: 100%
+}
+
+body {
+    background-color: #fafafa;
+    font-family: 'Lato';
+    height: calc(100vh - 15vh);
+}
+
+.form {
+    width: 50%;
+    position: relative;
+    height: 50px;
+}

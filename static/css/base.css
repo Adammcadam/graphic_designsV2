@@ -23,6 +23,14 @@ body {
     font-size: 20px;
 }
 
+.header {
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+    margin-left: 5rem;
+}
+
 .nav-links {
     display: flex;
     justify-content: space-around;
@@ -73,6 +81,15 @@ ul {
 
 .overlay {
     margin-top: 15vh;
+}
+
+/* from bulma css  */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 /* tablets  */
