@@ -8,14 +8,13 @@
         $(`#increase-qty_${itemId}`).prop('disabled', maxDisabled);
     }
 
-    // stop the user from being able to have a zero qty
-    var allQtyInputs = $('.input_qty');
+    var allQtyInputs = $('.input-qty');
     for(var i = 0; i < allQtyInputs.length; i++) {
         var itemId = $(allQtyInputs[i].data('item_id'))
         sortEnableDisable(itemId);
     }
 
-    $('.input_qty').change(function() {
+    $('.input-qty').change(function() {
         var itemId = $(this).data('item_id');
         sortEnableDisable(itemId);
     })
