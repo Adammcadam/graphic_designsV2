@@ -26,6 +26,25 @@
                     <form class="form" action="{% url 'add_to_cart' product.id %}" method="post">
                         {% csrf_token %}
                         <div class="form-row">
+                            {% with product.has_sizes as sizes %}
+                            {% if sizes %}
+                                <div class="col-12">
+                                    <p class="mt-1"><strong>Size:</strong></p>
+                                    <select class="form-control" name="size" id="id_size">
+                                        <option value="s">Small (45 x 32cm)</option>
+                                        <option value="m">Medium (67 x 48cm)</option>
+                                        <option value="l">Large (90 x 64cm)</option>
+                                    </select>
+                                </div>
+                            {% endif %}
+                            {% endwith %}
+                            <div class="col-12">
+                                    <p class="mt-1"><strong>Finish:</strong></p>
+                                    <select class="form-control" name="finish" id="id_finish">
+                                        <option value="gloss">Gloss</option>
+                                        <option value="matte">Matte</option>
+                                    </select>
+                                </div>
                             <div class="col-12">
                                 <p class="mt-1"><strong>Quantity:</strong></p>
                                 <div class="form-group">
