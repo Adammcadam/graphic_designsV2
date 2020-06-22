@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    function sortEnableDisable(itemId) {
+        var currentVal = parseInt($(`#id_qty_${itemId}`).val());
+        var minusDisabled = currentVal < 2;
+        var maxDisabled = currentVal > 98;
+        // set disabled on whether its minus val or max val
+        $(`#reduce-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increase-qty_${itemId}`).prop('disabled', maxDisabled);
+    }
+
+    // stop the user from being able to have a zero qty
+    var allQtyInputs = $('.input_qty');
+    for(var i = 0; i < allQtyInputs.length; i++) {
+        var itemId = $(allQtyInputs[i].data('item_id'))
+        sortEnableDisable(itemId);
+    }
+
+    $('.input_qty').change(function() {
+        var itemId = $(this).data('item_id');
+        sortEnableDisable(itemId);
+    })
+
+    // increase the qty 
+    $('.increase-qty').click(function(e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.input-qty')[0];
+        var currentVal = parseInt($(closestInput).val());
+        $(closestInput).val(currentVal + 1);
+        var itemId = $(this).data('item_id');
+        sortEnableDisable(itemId);
+    });
+
+    // reduce the qty
+    $('.reduce-qty').click(function(e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.input-qty')[0];
+        var currentVal = parseInt($(closestInput).val());
+        $(closestInput).val(currentVal - 1);
+        var itemId = $(this).data('item_id');
+        sortEnableDisable(itemId);
+    });
+</script>
