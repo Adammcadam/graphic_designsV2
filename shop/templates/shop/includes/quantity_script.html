@@ -10,7 +10,7 @@
 
     var allQtyInputs = $('.input-qty');
     for(var i = 0; i < allQtyInputs.length; i++) {
-        var itemId = $(allQtyInputs[i].data('item_id'))
+        var itemId = $(allQtyInputs[i]).data('item_id')
         sortEnableDisable(itemId);
     }
 
