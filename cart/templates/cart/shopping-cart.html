@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cart_tools %}
 
 {% block content %}
     <div class="overlay"></div>
@@ -82,7 +83,7 @@
                                         <p>{{ item.finish }}</p>
                                     </td> -->
                                     <td class="py-3">
-                                        <p>£{{ item.product.price }}</p>
+                                        <p>£{{ item.product.price | calc_subtotal:item.quantity  }}</p>
                                     </td>
                                 </tr>
                             {% endfor %}
