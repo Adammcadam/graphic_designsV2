@@ -102,6 +102,17 @@ ul {
     cursor: pointer;
 }
 
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 150px;
+    z-index: 999999999;
+}
+
+.toast-top {
+    height: 5px;
+}
+
 /* tablets  */
 @media screen and (max-width: 1024px) {
     .nav-links {
