@@ -38,10 +38,45 @@
                                         <p>£{{ item.product.price }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p>{{ item.quantity }}</p>
+                                        <form class="update-form" action="{% url 'update_cart' item.item_id  %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <button class="reduce-qty btn btn-light btn-sm"
+                                                            data-item_id="{{ item.item_id }}" id="reduce-qty_{{ item.item_id }}">
+                                                            <span class="icon">
+                                                                <i class="far fa-minus-square"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <input class="form-control form-control-sm cart-details input-qty" type="number" 
+                                                        name="quantity" value="{{ item.quantity }}" min="1" max="99" 
+                                                        data-item_id="{{ item.item_id }}" 
+                                                        id="id_qty_{{ item.item_id }}">
+                                                    <div class="input-group-append">
+                                                        <button class="increase-qty btn btn-light btn-sm"
+                                                            data-item_id="{{ item.item_id }}" id="increase-qty_{{ item.item_id }}">
+                                                            <span class="icon">
+                                                                <i class="far fa-plus-square"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    {% if item.product.has_sizes %}
+                                                    <input type="hidden" name="size" value="{{ item.size }}">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <a href="" class="update-item text-info"><small>Update <i class="fas fa-pen fa-sm"></i></small></a>
+                                        <a href="" class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-size="{{ item.size }}"><small>Remove <i class="fas fa-trash fa-sm"></i></small></a>
                                     </td>
                                     <td class="py-3">
-                                        <p>{{ item.size|upper }}</p>
+                                        {% if item.size == NULL %}
+                                            <p>N/A</p>
+                                        {% else %}
+                                            <p>{{ item.size|upper }}</p>
+                                        {% endif %}
                                     </td>
                                     <!-- <td class="py-3">
                                         <p>{{ item.finish }}</p>
@@ -52,12 +87,12 @@
                                 </tr>
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="text-right">
+                                <td colspan="6" class="text-right">
                                     <p><strong>Cart Total: £{{ total|floatformat:2}}</strong></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5" class="text-right">
+                                <td colspan="6" class="text-right">
                                     <a href="{% url 'shop' %}" class="btn btn-dark">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
@@ -86,4 +121,29 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    {% include 'shop/includes/quantity_script.html' %}
+
+    <script type="text/javascript">
+        // update the quantity
+        $('.update-item').click(function(e) {
+            var form = $(this).prev('.update-form')
+            form.submit();
+        });
+        // remove the item from the bag
+        $('.remove-item').click(function(e) {
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('id').split('_')[1];
+            var size = $(this).data('size');
+            var url = '/bag/remove/${itemId}'
+            var data = {'csrfmiddlewaretoken': csrfToken, 'size': size}
+
+            $.post(url, data).done(function() {
+                location.reload();
+            });
+        });
+    </script>
 {% endblock %}

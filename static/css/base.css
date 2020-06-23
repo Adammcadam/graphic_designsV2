@@ -91,6 +91,12 @@ ul {
     width: 1.5rem;
 }
 
+.cart-details {
+    border: none;
+    background-color: #fafafa;
+    color: #000000;
+}
+
 /* tablets  */
 @media screen and (max-width: 1024px) {
     .nav-links {
