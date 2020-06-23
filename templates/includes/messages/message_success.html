@@ -8,6 +8,42 @@
         </button>
     </div>
     <div class="toast-body">
-        {{ message }}
+        <div class="row">
+            <div class="col">
+                {{ message }}
+                <hr>
+            </div>
+        </div>
+        {% if product_count != 0 %}
+        <p>Your Cart: ({{ product_count }})</p>
+        <div class="cart-wrapper">
+            {% for item in cart_items %}
+                <div class="row">
+                    <div class="col-3">
+                        <img class="w-100" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    </div>
+                    <div class="col-9">
+                        <p><strong>{{ item.product.name }}</strong></p>
+                        <p class="small">Size: {% if item.has_sizes %}{{ item.product.size|upper }}{% else %}N/A{% endif %}</p>
+                        <p class="small text-muted">Qty: {{ item.quantity }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col">
+                <p><strong>Total: £{{ total|floatformat:2}}</strong></p>
+                <a class="btn btn-block btn-dark" href="{% url 'cart' %}">View Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        {% else %}
+            <p class="lead mb-2">Oh no! Your cart is empty :(</p>
+            <a href="/shop/" class="btn btn-dark">
+                <span class="icon">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                </span>
+                <span>Continue Shopping!</span>
+            </a>
+        {% endif %}
     </div>
 </div>

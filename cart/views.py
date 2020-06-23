@@ -26,7 +26,7 @@ def add_to_cart(request, item_id):
             if size in cart[item_id]['items_by_size'].keys():
                 # if item of that size in the bag increment the quantity 
                 cart[item_id]['items_by_size'][size] += quantity
-                messages.success(request, f'Updated {product.name} amount to {cart[item_id]["items_by_size"][size]}!')
+                messages.success(request, f'Updated {product.name} quantity to {cart[item_id]["items_by_size"][size]}!')
             else:
                 # new size for that item 
                 cart[item_id]['items_by_size'][size] = quantity
@@ -37,7 +37,7 @@ def add_to_cart(request, item_id):
     else:
         if item_id in list(cart.keys()):
             cart[item_id] += quantity
-            messages.success(request, f'Updated {product.name} amount to {cart[item_id]}!')
+            messages.success(request, f'Updated {product.name} quantity to {cart[item_id]}!')
         else:
             cart[item_id] = quantity
             messages.success(request, f'{product.name} has been added to your cart!')
@@ -59,7 +59,7 @@ def update_cart(request, item_id):
     if size:
         if quantity > 0: 
             cart[item_id]['items_by_size'][size] = quantity
-            messages.success(request, f'Updated {product.name} amount to {cart[item_id]["items_by_size"][size]}!')
+            messages.success(request, f'Updated {product.name} quantity to {cart[item_id]["items_by_size"][size]}!')
         else:
             del cart[item_id]['items_by_size'][size]
             if not cart[item_id]['items_by_size']:
@@ -68,7 +68,7 @@ def update_cart(request, item_id):
     else:
         if quantity > 0: 
             cart[item_id] = quantity
-            messages.success(request, f'Updated {product.name} amount to {cart[item_id]}!')
+            messages.success(request, f'Updated {product.name} quantity to {cart[item_id]}!')
         else:
             cart.pop(item_id)
             messages.success(request, f'{product.name} has been removed from your cart!')
