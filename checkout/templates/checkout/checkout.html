@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_tools %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="header mb-5">Checkout Form <i class="fas fa-money-check"></i></h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6 order-lg-last">
+                <!-- TODO: This needs styling etc  -->
+            </div>
+            <div class="col-12 col-lg-6">
+                <p class="text-muted">Please fill out the form below to complete your order</p>
+                <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend class="fieldset-label w-auto">Details <i class="fas fa-info-circle"></i></legend>
+                        {{ order_form.full_name | as_crispy_field }}
+                        {{ order_form.email | as_crispy_field }}
+                        {{ order_form.phone_number | as_crispy_field }}
+                    </fieldset>
+                    <fieldset>
+                        <legend class="fieldset-label w-auto">Delivery <i class="fas fa-truck"></i></legend>
+                        {{ order_form.address_line1 | as_crispy_field }}
+                        {{ order_form.address_line2 | as_crispy_field }}
+                        {{ order_form.city | as_crispy_field }}
+                        {{ order_form.postcode | as_crispy_field }}
+                        {{ order_form.country | as_crispy_field }}
+                        <div class="form-check form-check-inline float-right">
+                            {% if user.is_authenticated %}
+                                <label class="form-check-label" for="save-info">Save delivery info to my profile</label>
+                                <input type="checkbox" name="save-info" id="save-info" checked>
+                            {% else %}
+                                <label class="form-check-label" for="save-info">
+                                    <a href="{% url 'account_signup' %}">Create an Account</a> or
+                                    <a href="{% url 'account_login' %}">Login</a> to save this information for next time
+                                </label>
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="fieldset-label w-auto">Payment <i class="fas fa-money-bill-wave-alt"></i></legend>
+                        <div id="card-element"></div>
+                        <div class="text-danger" id="card-errors"></div>
+                    </fieldset>
+
+                    <div class="submit-button text-right">                    
+                        <a href="{% url 'cart' %}" class="btn btn-dark mb-5">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="font-weight-bold">Adjust Cart</span>
+                        </a>
+                        <button id="submit-button" class="btn btn-dark mb-5">
+                            <span class="font-weight-bold">Complete Order</span>
+                            <span class="icon">
+                                <i class="fas fa-money-bill-wave-alt"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
