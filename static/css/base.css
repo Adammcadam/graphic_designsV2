@@ -97,6 +97,11 @@ ul {
     color: #000000;
 }
 
+.update-item,
+.remove-item {
+    cursor: pointer;
+}
+
 /* tablets  */
 @media screen and (max-width: 1024px) {
     .nav-links {
