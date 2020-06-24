@@ -11,15 +11,15 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="header mb-5">Checkout Form <i class="fas fa-money-check"></i></h1>
+                <h1 class="header mb-5">Checkout <i class="fas fa-money-check"></i></h1>
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-lg-6 order-lg-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Your cart</span>
-                    <span class="badge badge-secondary badge-pill">{{ product_count }}</span>
+                    <span>Your cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                    <span class="badge badge-dark badge-pill">{{ product_count }}</span>
                 </h4>
                 <ul class="list-group mb-3">
                     {% for item in cart_items %}
@@ -68,7 +68,7 @@
                     </fieldset>
                     <fieldset>
                         <legend class="fieldset-label w-auto">Payment <i class="fas fa-money-bill-wave-alt"></i></legend>
-                        <div id="card-element"></div>
+                        <div id="card-element" class="mb-3"></div>
                         <div class="text-danger" id="card-errors"></div>
                     </fieldset>
 
@@ -90,4 +90,11 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"stripe_public_key" }}
+    {{ stripe_secret|json_script:"stripe_secret_key" }}
+    <script src="{% static 'checkout/js/stripe.js' %}"></script>
 {% endblock %}
