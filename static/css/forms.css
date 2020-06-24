@@ -4,6 +4,7 @@ html {
 
 body {
     background-color: #fafafa;
+    /* from google fonts  */
     font-family: 'Lato';
     height: calc(100vh - 15vh);
 }
