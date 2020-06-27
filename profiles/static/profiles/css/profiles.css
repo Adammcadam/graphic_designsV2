@@ -1,0 +1,12 @@
+.profile-form-input::placeholder {
+  color: #b4babf;
+}
+
+#id_default_country,
+id_default_country option:not(:first-child) {
+    color: #b4babf
+}
+
+id_default_country option:first-child {
+    color: #b4babf
+}

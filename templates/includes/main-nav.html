@@ -5,11 +5,19 @@
         </div>
         <ul class="nav-links">
             {% if user.is_authenticated %}
-                {%  if user.is_superuser %}
-                    <li class="navs"><a href="#">Gallery</a></li>
-                {% endif %}
-                <li class="navs"><a href="#">Account</a></li>
+                <li class="navs"><a href="{% url 'profile' %}">Account</a></li>
                 <li class="navs"><a href="{% url 'account_logout' %}">Logout</a></li>
+                <li class="navs"><a href="{% url 'shop' %}">Shop</a></li>
+                <li class="navs">
+                    <a href="{% url 'cart' %}">
+                        <span>
+                            {% if product_count %}
+                                {{ product_count }}
+                            {% endif %}
+                        </span> 
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </a>
+                </li>
             {% else %}
                 <li class="navs"><a href="#">Work</a></li>
                 <li class="navs"><a href="{% url 'account_signup' %}">Register</a></li>
@@ -23,10 +31,7 @@
                             {% endif %}
                         </span> 
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        
-                    
                     </a>
-
                 </li>
             {% endif %}
         </ul>

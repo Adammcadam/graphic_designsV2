@@ -15,12 +15,41 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 mt-5">
-                <legend class="border-bottom mb-4">My Details <i class="fas fa-info-circle"></i></legend>
+            <div class="col-md-6">
+                <legend class="mb-3">My Details <i class="fas fa-info-circle"></i></legend>
+                <hr>
+                <p class="text-muted">Default Delivery Details</p>
+                <form action="{% url 'profile' %}" method="POST" id="update-profile-form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-dark float-right">Update Information</button>
+                </form>
             </div>
-            <div class="col-md-6 mt-5">
-                <legend class="border-bottom mb-4">Order History <i class="fas fa-history"></i></legend>
+            <div class="col-md-6">
+                <legend class="mb-3">Order History <i class="fas fa-history"></i></legend>
+                <hr>
+                <p class="text-muted">Your Previous Orders</p>
+                {{ orders }}
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    <script type="text/javascript">
+        let countrySelected = $('#id_default_country').val();
+        if(!countrySelected) {
+            $('#id_default_country').css('color', '#b4babf');
+        }
+        // capture the change event
+        $('#id_default_country').change(function() {
+            countrySelected = $(this).val()
+            if(!countrySelected) {
+                $(this).css('color', '#b4babf');
+            } else {
+                $(this).css('color', '#000');
+            }
+        });
+    </script>
 {% endblock %}
