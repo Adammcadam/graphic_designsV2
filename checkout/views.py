@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
 
 from .forms import OrderForm
 from profiles.forms import UserProfileForm
@@ -64,6 +66,19 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_cart'))
+
+            # send confirmation email 
+            customer_email = order.email
+            subject = render_to_string(
+                'checkout/confirmation_emails/confirmation_email_subject.txt',
+                {'order':order}
+            )
+            body = render_to_string(
+                'checkout/confirmation_emails/confirmation_email_body.txt',
+                {'order':order, 'contact_email': settings.CLIENT_FROM_EMAIL}
+            )
+
+            send_mail(subject, body, settings.CLIENT_FROM_EMAIL, [customer_email])
 
             # User requested to save info 
             request.session['save-info'] = 'save-info' in request.POST
