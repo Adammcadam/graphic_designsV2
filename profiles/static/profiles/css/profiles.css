@@ -10,3 +10,8 @@ id_default_country option:not(:first-child) {
 id_default_country option:first-child {
     color: #b4babf
 }
+
+.order-history {
+  max-height: 255px;
+  overflow-y: auto;
+}
