@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="header mb-5">My Profile <i class="fas fa-user-circle"></i></h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <legend class="border-bottom mb-4">My Details <i class="fas fa-info-circle"></i></legend>
+            </div>
+            <div class="col-md-6 mt-5">
+                <legend class="border-bottom mb-4">Order History <i class="fas fa-history"></i></legend>
+            </div>
+        </div>
+    </div>
+{% endblock %}
