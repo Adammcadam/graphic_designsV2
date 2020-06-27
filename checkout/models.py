@@ -29,7 +29,8 @@ class Order(models.Model):
         """ 
         Account for items being added to update total
         """
-        self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum']
+        self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum'] or 0
+        self.save()
     
     def save(self, *args, **kwargs):
         """ 
