@@ -36,14 +36,6 @@
                 <a class="btn btn-block btn-dark" href="{% url 'cart' %}">View Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </div>
         </div>
-        {% else %}
-            <p class="lead mb-2">Oh no! Your cart is empty :(</p>
-            <a href="/shop/" class="btn btn-dark">
-                <span class="icon">
-                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                </span>
-                <span>Continue Shopping!</span>
-            </a>
         {% endif %}
     </div>
 </div>
