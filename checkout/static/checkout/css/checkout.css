@@ -10,7 +10,8 @@
     border-radius: 5px;
 }
 
-.StripeElement {
+.StripeElement,
+.stripe-input {
   box-sizing: border-box;
   height: 40px;
   padding: 10px 12px;
@@ -22,7 +23,9 @@
   transition: box-shadow 150ms ease;
 }
 
-.StripeElement--focus {
+.StripeElement--focus,
+.stripe-input:focus,
+.stripe-input:active {
   box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
@@ -47,4 +50,18 @@
   justify-content: center;
   margin: 0;
   height: 100%;
+}
+
+select,
+select option {
+    color: #b4babf;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #b4babf !important;
+}
+
+.stripe-input::placeholder {
+  color: #b4babf;
 }
