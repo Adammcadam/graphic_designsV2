@@ -14,7 +14,7 @@
                 <hr>
             </div>
         </div>
-        {% if product_count != 0 %}
+        {% if product_count != 0 and not on_profile_page %}
         <p>Your Cart: ({{ product_count }})</p>
         <div class="cart-wrapper">
             {% for item in cart_items %}
