@@ -17,7 +17,37 @@
         </div>
         <div class="row">
             <div class="col-12">
-
+                <h1 class="header mb-3">Order Info <i class="fas fa-info-circle"></i></h1>
+                <p>Order Number: <strong>{{ order.order_number }}</strong></p>
+                <p>Order Date: <strong>{{ order.date|date:'d M Y @ H:i' }}</strong></p>
+                <hr>
+            </div>
+            <div class="col-12">
+                <h1 class="header mb-3">Order Details <i class="fas fa-asterisk"></i></h1>
+                {% for item in order.orderitems.all %}
+                    <p>
+                        {{ item.product.name }}{% if item.product_size %} - Size {{ item.product.size|upper }}{% endif %} - 
+                        <strong class="text-muted">{{ item.quantity }} @ £{{ item.product.price }} each</strong>
+                    </p>
+                {% endfor %}
+                <hr>
+            </div>
+            <div class="col-12">
+                <h1 class="header mb-3">Delivering To <i class="fas fa-truck"></i></h1>
+                <p>Recipent: <strong>{{ order.full_name }}</strong></p>
+                <p>Address Line 1: <strong>{{ order.address_line1 }}</strong></p>
+                {% if order.address_line2 %}
+                    <p>Address Line 2: <strong>{{ order.address_line2 }}</strong></p>
+                {% endif %}
+                <p>City: <strong>{{ order.city }}</strong></p>
+                <p>Postcode: <strong>{{ order.postcode }}</strong></p>
+                <p>Country: <strong>{{ order.country }}</strong></p>
+                <hr>
+            </div>
+            <div class="col-12">
+                <h1 class="header mb-3">Billing Info <i class="fas fa-money-bill-wave-alt"></i></h1>
+                <p>Order Total: <strong>£{{ order.order_total }}</strong></p>
+                <hr>
             </div>
         </div>
     </div>
