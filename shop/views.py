@@ -60,3 +60,10 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
+def delete_product(request, product_id):
+    """ A view for super users to delete products """
+    product = get_object_or_404(Product,  pk=product_id)
+    product.delete()
+    messages.success(request, 'The product has been deleted successfully')
+    return redirect(reverse('product_page', args=[product_id]))
