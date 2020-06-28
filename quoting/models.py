@@ -10,9 +10,11 @@ class CustomProduct(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
+    email = models.EmailField(max_length=254, null=False, blank=False)
+    phone_number = models.CharField(max_length=20, null=False, blank=False)
 
     def __str__(self):
-        return self.description
+        return self.unique_id
 
     def _generate_unique_id(self):
         """

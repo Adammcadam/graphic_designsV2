@@ -5,7 +5,7 @@ from .models import CustomProduct
 class CustomQuoteForm(forms.ModelForm):
     class Meta:
         model = CustomProduct
-        fields = ('length', 'width', 'height', 'description', 'image')
+        fields = ('length', 'width', 'height', 'description', 'image', 'email', 'phone_number')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -14,6 +14,8 @@ class CustomQuoteForm(forms.ModelForm):
             'width': 'width',
             'height': 'height',
             'description': 'Give us a little information about your project',
+            'email' : 'Email',
+            'phone_number' : 'Phone Number'
         }
 
         for field_name, field in self.fields.items():
