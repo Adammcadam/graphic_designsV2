@@ -5,6 +5,9 @@
         </div>
         <ul class="nav-links">
             {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <li class="navs"><a href="{% url 'add_product' %}">Add Products</a></li>
+                {% endif %}
                 <li class="navs"><a href="{% url 'profile' %}">Account</a></li>
                 <li class="navs"><a href="{% url 'account_logout' %}">Logout</a></li>
                 <li class="navs"><a href="{% url 'shop' %}">Shop</a></li>

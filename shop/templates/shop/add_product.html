@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="header mb-5">Add Product <i class="fas fa-money-check"></i></h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <p class="text-muted">Please fill out the form below to add products</p>
+                <form action="{% url 'add_product' %}" method="POST" id="product-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend class="fieldset-label w-auto">Product Details <i class="fas fa-info-circle"></i></legend>
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                    </fieldset>
+                    <div class="submit-button text-right">                    
+                        <button id="submit-button" class="btn btn-dark mb-5">
+                            <span class="font-weight-bold">Add</span>
+                            <span class="icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
