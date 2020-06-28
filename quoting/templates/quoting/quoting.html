@@ -12,19 +12,50 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <p class="text-muted">Please fill out our form below for a quote</p>
-                <form action="{% url 'custom_quote' %}" method="POST" enctype="multipart/form-data">
+                <p class="text-muted">Please fill out our form below for a quote <span class="icon"><i class="fas fa-edit"></i></span></p>
+                <form action="{% url 'custom_quote' %}" method="POST" enctype="multipart/form-data" id="quoting-form">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button type="submit" class="btn btn-dark float-right">Request Quote</button>
                 </form>
             </div>
             <div class="col-6">
-                <p class="text-muted">Our price estimate <br>
-                    <small>(This is an estimate and is subject to change based on the information given)</small>
-                </p>
-                <p>Current Price: <strong>£{{ total_price }}</strong></p>
+                <p class="text-muted">Want an  estimate use our handy pricing calculator below <span class="icon"><i class="fas fa-calculator"></i></span></p>
+                <small class="text-muted">(This is an estimate and is subject to change based on the information given)</small>
+                <form>
+                    <div class="form-group">
+                        <label for="length">Length (cm)</label>
+                        <input class="form-control mb-1" type="number" name="length" id="length">
+                        <label for="width">Width (cm)</label>
+                        <input class="form-control mb-1" type="number" name="width" id="width">
+                        <label for="height">Height (cm)</label>
+                        <input class="form-control mb-1" type="number" name="height" id="height">
+                        <input class="btn btn-dark float-right" id="estimate" type="button" value="Estimate" onclick="price_calc()">
+                        <input class="btn btn-dark float-right mr-1" id="reset" type="reset" value="Reset" onclick="reset_price()">
+                    </div>
+                </form>
+                <strong id="result"></strong>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    <!-- <script src="{% static 'js/pricing.js' %}"></script> -->
+    <script type="text/javascript">
+        function price_calc() {
+            var length = Number(document.getElementById("length").value);
+            var width = Number(document.getElementById("width").value);
+            var height = Number(document.getElementById("height").value);
+            var division = Number(5000);
+            var result = (length * width * height)/ 5000;
+        
+            document.getElementById("result").innerHTML = " £ " + Math.round(result * 100) / 100;
+        }
+
+        function reset_price() {
+            document.getElementById("result").innerHTML='';
+        }
+    </script>
 {% endblock %}
