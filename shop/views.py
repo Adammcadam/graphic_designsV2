@@ -38,3 +38,25 @@ def add_product(request):
             'form': form,
         }
     return render(request, template, context)
+
+def edit_product(request, product_id): 
+    """ A view for super users to edit products """
+    product = get_object_or_404(Product,  pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'You have successfully updated {product.name}')
+            return redirect(reverse('product_page', args=[product_id]))
+        else:
+            messages.error(request, 'Something went wrong, please check the form for errors')
+    else:
+        edit_form = ProductForm(instance=product)
+
+    template = 'shop/edit_product.html'
+    context = {
+        'edit_form': edit_form,
+        'product': product
+    }
+
+    return render(request, template, context)

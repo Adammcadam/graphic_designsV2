@@ -6,7 +6,12 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="header mb-5">{{ product.name }}</h1>
+                <h1 class="header mb-5">{{ product.name }}
+                    {% if user.is_superuser %}
+                        <a class="float-right" href="{% url 'edit_product' product.id %}">Edit <span class="icon"><i class="fas fa-pen"></i></span></a>
+                        <a class="text-danger float-right mr-5" href="">Delete <span class="icon"><i class="fas fa-trash"></i></span></a>
+                    {% endif %}
+                </h1> 
                 <hr>
             </div>
         </div>
