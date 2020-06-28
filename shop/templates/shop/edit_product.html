@@ -8,7 +8,7 @@
             <div class="col-12">
                 <h1 class="header mb-5">Edit Product <i class="fas fa-money-check"></i>
                     {% if user.is_superuser %}
-                        <a class="float-right text-dark" href="{% url 'product_page' product.id %}"><span class="icon"><i class="fas fa-arrow-left"></i></span> Back</a>
+                        <a class="float-right text-dark text-decoration-none" href="{% url 'product_page' product.id %}"><span class="icon"><i class="fas fa-arrow-left"></i></span> Back</a>
                     {% endif %}
                 </h1>
                 <hr>

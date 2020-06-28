@@ -6,7 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="header mb-5">Add Product <i class="fas fa-money-check"></i></h1>
+                <h1 class="header mb-5">Add Product <i class="fas fa-money-check"></i>
+                    {% if user.is_superuser %}
+                        <a class="float-right text-dark text-decoration-none" href="{% url 'home' %}"><span class="icon"><i class="fas fa-arrow-left"></i></span> Back</a>
+                    {% endif %}
+                </h1>
                 <hr>
             </div>
         </div>
