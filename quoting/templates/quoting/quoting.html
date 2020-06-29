@@ -32,6 +32,7 @@
                         <input class="form-control mb-1" type="number" name="height" id="height">
                         <input class="btn btn-dark float-right" id="estimate" type="button" value="Estimate" onclick="price_calc()">
                         <input class="btn btn-dark float-right mr-1" id="reset" type="reset" value="Reset" onclick="reset_price()">
+                        <div id="custom-errors" class="custom-errors text-danger"></div>
                     </div>
                 </form>
                 <strong id="result"></strong>
@@ -42,20 +43,30 @@
 
 {% block postload_js %}
     {{ block.super }}
-    <!-- <script src="{% static 'js/pricing.js' %}"></script> -->
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('.custom-errors').hide();
+        });
         function price_calc() {
+            var el = document.getElementById('custom-errors');
             var length = Number(document.getElementById("length").value);
             var width = Number(document.getElementById("width").value);
             var height = Number(document.getElementById("height").value);
             var division = Number(5000);
-            var result = (length * width * height)/ 5000;
+            var result = (length * width * height) / division;
         
-            document.getElementById("result").innerHTML = " £ " + Math.round(result * 100) / 100;
+            if(!length || !width || !height) {
+                el.innerHTML='Length, width or height cannot be empty';
+                $('.custom-errors').show()
+            } else {
+                document.getElementById("result").innerHTML = " £ " + Math.round(result * 100) / 100;
+                $('.custom-errors').hide()
+            }
         }
 
         function reset_price() {
             document.getElementById("result").innerHTML='';
+            $('.custom-errors').hide()
         }
     </script>
 {% endblock %}
