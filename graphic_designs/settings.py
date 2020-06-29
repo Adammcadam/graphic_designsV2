@@ -181,7 +181,6 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 CLIENT_FROM_EMAIL = 'info@graphicdesigns.co.uk'
 
 # AWS 
-
 if 'USE_AWS' in os.environ:
     # S3 config
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
