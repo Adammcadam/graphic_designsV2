@@ -1,0 +1,7 @@
+Hello,
+
+You have a new custom quote request from {{ custom_quote.email }}. Please check the details.
+
+Regards 
+
+Graphic Designs
