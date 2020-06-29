@@ -1,1 +1,1 @@
-web: guincorn graphic_designs.wsgi:application
+web: gunicorn graphic_designs.wsgi:application
