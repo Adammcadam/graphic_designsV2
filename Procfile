@@ -1,0 +1,1 @@
+web: guincorn graphic_designs.wsgi:application
