@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-lg-6 mb-5">
                 <p class="text-muted">Please fill out our form below for a quote <span class="icon"><i class="fas fa-edit"></i></span></p>
                 <form action="{% url 'custom_quote' %}" method="POST" enctype="multipart/form-data" id="quoting-form">
                     {% csrf_token %}
@@ -19,7 +19,7 @@
                     <button type="submit" class="btn btn-dark float-right">Request Quote</button>
                 </form>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <p class="text-muted">Want an  estimate use our handy pricing calculator below <span class="icon"><i class="fas fa-calculator"></i></span></p>
                 <small class="text-muted">(This is an estimate and is subject to change based on the information given)</small>
                 <form>

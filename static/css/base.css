@@ -27,7 +27,7 @@ body {
 .header {
     color: #000000;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     font-size: 20px;
 }
 
@@ -245,6 +245,21 @@ ul {
 
     .header-text {
         margin-bottom: 0px;
+    }
+
+    .crop {
+        width: 400px; /* width of container */
+        height: 190px; /* height of container */
+        object-fit: cover;
+    }
+    
+    .crop img {
+        height: 150px;
+        width: 200px;
+    }
+
+    .mobile-text {
+        font-size: 32px;
     }
 }
 

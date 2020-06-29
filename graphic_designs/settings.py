@@ -26,7 +26,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
+# DEBUG = 'DEVELOPMENT' in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = ['adamwragg-graphic-designs.herokuapp.com', 'localhost']
 
@@ -177,36 +178,36 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
-if 'DEVELOPMET' is os.environ:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    CLIENT_FROM_EMAIL = 'info@graphicdesigns.co.uk'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 587
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASS = os.environ.get('EMAIL_HOST_PASS')
-    CLIENT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+# if 'DEVELOPMET' is os.environ:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#     CLIENT_FROM_EMAIL = 'info@graphicdesigns.co.uk'
+# else:
+#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#     EMAIL_USE_TLS = True
+#     EMAIL_PORT = 587
+#     EMAIL_HOST = 'smtp.gmail.com'
+#     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+#     EMAIL_HOST_PASS = os.environ.get('EMAIL_HOST_PASS')
+#     CLIENT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
-# AWS 
-if 'USE_AWS' in os.environ:
-    # S3 config
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-    AWS_S3_REGION_NAME = 'eu-west-2'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# # AWS 
+# if 'USE_AWS' in os.environ:
+#     # S3 config
+#     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+#     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+#     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+#     AWS_S3_REGION_NAME = 'eu-west-2'
+#     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-    AWS_S3_FILE_OVERWRITE = False
-    AWS_DEFAULT_ACL = None
+#     AWS_S3_FILE_OVERWRITE = False
+#     AWS_DEFAULT_ACL = None
 
-    # static and media files 
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION  = 'media'
+#     # static and media files 
+#     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+#     STATICFILES_LOCATION = 'static'
+#     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+#     MEDIAFILES_LOCATION  = 'media'
 
-    # override the media and static files for production 
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}'
+#     # override the media and static files for production 
+#     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}'
+#     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}'
