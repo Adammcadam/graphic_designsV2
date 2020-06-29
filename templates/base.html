@@ -15,7 +15,12 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
         <!-- favicon  -->
-        <!-- <link rel="icon" type="image/png" href="{{ MEDIA_URL }}favicon/favicon.jpg"> -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}favicon/favicon-16x16.png">
+        <link rel="manifest" href="{{ MEDIA_URL }}favicon/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
     {% endblock %}
     {% block extra_css %}{% endblock %}
 
